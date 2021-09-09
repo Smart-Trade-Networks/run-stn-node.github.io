@@ -1,0 +1,212 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Chapter 1 - Run STN Node</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html" class="active"><strong aria-hidden="true">1.</strong> Chapter 1</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Run STN Node</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="chapter-1---setting-up-an-stn-node"><a class="header" href="#chapter-1---setting-up-an-stn-node">Chapter 1 - Setting up an STN Node</a></h1>
+<h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<p>Smart Trade Networks currently runs a Proof of Authority EVM blockchain.</p>
+<p>You can view the networks stats here: <a href="http://54.206.103.22:8000/#stats">http://54.206.103.22:8000/#stats</a></p>
+<p>Simple Blockchain Explorer here: <a href="http://65.21.7.175:8000/">http://65.21.7.175:8000/</a></p>
+<p>If you hold more than 500 STNs we will send you a plug and play computer that run an STN node.</p>
+<h2 id="steps-to-run-a-node"><a class="header" href="#steps-to-run-a-node">Steps to Run a Node</a></h2>
+<p>These are the high level steps to run your own node.</p>
+<ol>
+<li>Install Geth</li>
+<li>Download and init the the STN genesis file.</li>
+<li>Start Geth</li>
+</ol>
+<h2 id="1-instal-geth"><a class="header" href="#1-instal-geth">1. Instal Geth</a></h2>
+<p>The instructions to install Geth are located <a href="https://geth.ethereum.org/docs/install-and-build/installing-geth">here</a>.</p>
+<h2 id="2-download-and-init-genesis-file"><a class="header" href="#2-download-and-init-genesis-file">2. Download and init genesis file</a></h2>
+<p>Download the <a href="./stn.json">stn.json</a> genesis file.</p>
+<p>Then init the file by running the following command.</p>
+<pre><code class="language-bash">geth --datadir=$HOME/.beefledger init beefledger.json
+</code></pre>
+<h2 id="3-start-geth"><a class="header" href="#3-start-geth">3. Start Geth</a></h2>
+<p>You can start geth with the following command or you could download it as a bash script.</p>
+<pre><code class="language-bash">#!/bin/bash
+geth --networkid=18122 \
+--datadir=$HOME/.beefledger \
+--cache=1024 \
+--syncmode=full \
+--ethstats='Brisbane_Node:delva57@54.206.103.22:8080' \
+--bootnodes=&quot;enode://6ce750dd33c4bed7ee148ed5d70f52806c164da1263d2d7e9d9f9c296671ae3178eb93fb433628e49406b6ef6ff658cb2bf55628d6c785d80ce3bd9f549ca2d3@13.236.201.188:30303&quot;,&quot;enode://73a2c9708649e6d211a0708161dc3737badbc08d919106b12a30f9e22813881b707e345d76f25f48efe1d884be3fbdda3d181c024eae565e9e4a83924bba7c94@3.104.36.254:30303&quot;,&quot;enode://c2c9492c7dee6dce7b9d6c335b03fa571ca422a55adb4085abb8108bb750313748294a88803698f3c16a5a26235b44ff1c835273d6b9bccf263a08cc12093672@54.206.122.5:30303&quot;,&quot;enode://42e12e301ee17a75027c8d7dfdec072a8d7ec87fbd4b80042f7a568803896579052b188806c2d83e00cd9c75060b8a62b6bea479ab8958d377b6fa8a94a96a33@54.206.103.22:30305&quot;,&quot;enode://aade8d01823ec53e3f4ddeb1f001aa971f72e2a4b015d222aafbd8efcfc4a0d7bb022824eb47bd694c6a83a5856021a231ceb529572c8b4e82e52e6f690fd93b@127.0.0.1:30301&quot; \
+--rpc \
+--rpcapi=&quot;admin,eth,net,web3,personal&quot; \
+</code></pre>
+<p>The mdBook source and documentation are released under
+the <a href="https://www.mozilla.org/MPL/2.0/">Mozilla Public License v2.0</a>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>
